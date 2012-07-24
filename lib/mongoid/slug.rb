@@ -84,7 +84,7 @@ module Mongoid
           else
             index({ slug_name => 1 }, { :unique => true })
           end
-          index({ slug_history_name => 1 } if slug_history_name
+          index({ slug_history_name => 1 }) if slug_history_name
         end
 
         set_callback options[:permanent] ? :create : :save, :before do |doc|

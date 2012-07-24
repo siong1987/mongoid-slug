@@ -80,11 +80,11 @@ module Mongoid
 
         if options[:index]
           if slug_scope
-            index [[slug_name, Mongo::ASCENDING], [slug_scope, Mongo::ASCENDING]], :unique => true
+            index({ slug_name => 1, slug_scope => 1 }, { :unique => true })
           else
-            index slug_name, :unique => true
+            index({ slug_name => 1 }, { :unique => true })
           end
-          index slug_history_name if slug_history_name
+          index({ slug_history_name => 1 } if slug_history_name
         end
 
         set_callback options[:permanent] ? :create : :save, :before do |doc|
